@@ -23,6 +23,28 @@
 <input type="submit" value="Submit using GET">
 <input type="submit" formmethod="post" value="Submit using POST">
 </form>
+
+<p>Click the button to get your location:</p>
+<button onclick="getLocation()">Get your location</button>
+
+<p id="loc"></p>
+
+<script>
+var x = document.getElementById("loc");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(showPosition);
+  } else { 
+    x.innerHTML = "Sorry. Geolocation not supported.";
+  }
+}
+    
+function showPosition(position) {
+    x.innerHTML="Latitude: " + position.coords.latitude + 
+    "<br>Longitude: " + position.coords.longitude;
+}
+</script>
   
 </body>
 </html>
