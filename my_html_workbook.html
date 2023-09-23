@@ -18,7 +18,7 @@
   <input type="text" id="lname" name="lname" required><br><br>
   
   <label for="age">Age:</label>
-  <input type="text" id="age" name="age" required><br><br>
+  <input type="text" id="age" name="age" pattern="[0-9]+" required><br><br>
   
   <label for="faculty">Faculty:</label>
   <input type="text" id="faculty" name="faculty" required><br><br>
@@ -49,6 +49,25 @@ function getLocation() {
 function showPosition(position) {
     x.innerHTML="Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+
+<div id="drag" draggable="true" ondragstart="drag(event)">Drag me</div>
+<div id="drop" ondrop="drop(event)" ondragover="allowDrop(event)">Drop me here</div>
+  
+<script>
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drag(event) {
+    event.dataTransfer.setData("text", event.target.id);
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    event.target.appendChild(document.getElementById(data));
 }
 </script>
   
